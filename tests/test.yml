@@ -4,14 +4,9 @@
   become_method: sudo
   vars:
     mailhog_smtp_port: 25
-    gitlab_domain: git.lab.lokal
     gitlab_release: 12.5.0-ce.0
-    gitlab_ee: False
     gitlab_initial_root_password: PassW0rd
     gitlab_external_url: http://git.lab.lokal
-    gitlab_letsencrypt_enable: False
-    gitlab_activate_monitoring: False
-    gitlab_registry_external_url: http://docker.lab.lokal
     gitlab_additional_configs:
     - namespace: gitlab_rails
       var: gitlab_email_from
@@ -28,28 +23,13 @@
     - namespace: gitlab_rails
       var: smtp_port
       value: 25
-    gitlab_mattermost_external_url: http://chat.lab.lokal
-    gitlab_mattermost_additional_configs:
-      TeamSettings:
-        SiteName: "chat.lab.lokal"
-      EmailSettings:
-        EnableSignUpWithEmail: False
-        EnableSignInWithEmail: False
-        EnableSignInWithUsername: False
-        SendEmailNotifications: True
-        UseChannelInEmailNotifications: True
-        FeedbackName: "chat.lab.lokal"
-        FeedbackEmail: "gitlab@lab.lokal"
-        SMTPUsername: "gitlab@lab.lokal"
-        SMTPServer: "localhost"
-        SMTPPort: "25"
 
   pre_tasks:
   - name: Add test Domain to etc hosts
     lineinfile:
       dest: /etc/hosts
       regexp: '^127.0.0.1'
-      line: '127.0.0.1 localhost lab.lokal git.lab.lokal docker.lab.lokal chat.lab.lokal runnerlab.lokal'
+      line: '127.0.0.1 localhost lab.lokal git.lab.lokal'
       state: present
 
   roles:

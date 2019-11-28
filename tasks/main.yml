@@ -1,0 +1,11 @@
+---
+
+- name: obtain registration token
+  command: 'gitlab-rails runner -e production "puts Gitlab::CurrentSettings.current_application_settings.runners_registration_token"'
+  register: _runners_registration_token
+
+- name: set gitlab_runner_token
+  set_fact:
+    gitlab_runner_token: "{{ _runners_registration_token.stdout }}"
+
+...

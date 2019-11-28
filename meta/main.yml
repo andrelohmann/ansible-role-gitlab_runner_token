@@ -1,0 +1,25 @@
+---
+galaxy_info:
+  role_name: gitlab_runner_token
+  author: andrelohmann
+  description: ansible galaxy role to extract gitlab runner registration token from gitlab instance
+  company: smartformer UG
+
+  license: MIT
+
+  min_ansible_version: 2.7
+
+  platforms:
+    - name: Ubuntu
+      versions:
+      - xenial
+      - bionic
+
+  galaxy_tags:
+  - gitlab
+  - runner
+  - token
+
+dependencies:
+- andrelohmann.gitlab
+...
